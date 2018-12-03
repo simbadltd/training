@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -55,17 +56,17 @@ namespace TestGm
         private static void Task2()
         {
             var results = new List<string>();
-            var sum = 0D;
+            var sum = 0M;
             var randomize = new Random();
 
-            while (sum < 1D)
+            while (sum < 1M)
             {
                 // [kk]: to avoid sum to be greater than 1D, we should calculate <maxLimit> depending on current value of <sum>
-                var maxLimit = Math.Min(1D - sum, 0.6D);
-                var candidate = Math.Round(randomize.NextDouble() * maxLimit, 2);
+                var maxLimit = Math.Min(1M - sum, 0.6M);
+                var candidate = (decimal)randomize.NextDouble() * maxLimit;
                 sum += candidate;
 
-                results.Add(candidate.ToString("F2"));
+                results.Add(candidate.ToString(CultureInfo.InvariantCulture));
             }
 
             Console.WriteLine(string.Join("; ", results));
