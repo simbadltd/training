@@ -1,0 +1,30 @@
+<div>
+  <div style="float:left">
+    <mat-form-field>
+      <input matInput name="nickName" placeholder="Nick Name" [(ngModel)]="pet.nickName">
+    </mat-form-field>
+  </div>
+
+  <div style="float:left">
+    <mat-form-field>
+      <mat-select [(ngModel)]="pet.type">
+        <mat-select-trigger>
+          {{ pet.type }}
+        </mat-select-trigger>
+        <mat-option *ngFor="let type of types" [value]="type">{{type}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field>
+      <input matInput [matDatepicker]="datePicker"
+             placeholder="Birth date" [(ngModel)]="pet.birthDate">
+      <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
+      <mat-datepicker #datePicker></mat-datepicker>
+    </mat-form-field>
+  </div>
+</div>
+<div>
+  <button mat-raised-button class="mat-primary" (click)="save()">Save</button>
+</div>
